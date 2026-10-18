@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konsep Rasio - Microteaching Matematika Kelas VII</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@600;700;800&display=swap');
+
+:root {
+  --bg: #fff8eb;
+  --card: #ffffff;
+  --ink: #2d1e18;
+  --mut: #8c6d58;
+  --accent: #ff6b4a;
+  --accent-hover: #e55333;
+  --ok: #27ae60;
+  --bad: #e74c3c;
+  --jer: #ff9f1a;
+  --wat: #54a0ff;
+  --line: #f1d4b3;
+  --primary: #ff9f43;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  background-image: radial-gradient(#f0d5b7 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app { width: 100%; max-width: 760px; padding: 16px; }
+
+.card {
+  background: var(--card);
+  border: 3px solid var(--line);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 12px 32px rgba(220, 160, 110, 0.18);
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--mut);
+  font-size: 15px;
+}
+
+.bar { height: 10px; background: #f0e2d0; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+.bar i {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 10px; transition: width 0.4s ease;
+}
+
+h1 { font-family: 'Fredoka', sans-serif; font-size: 32px; text-align: center; margin: 10px 0; color: #c0392b; }
+h2 { font-family: 'Fredoka', sans-serif; font-size: 24px; text-align: center; margin: 6px 0 16px 0; color: var(--accent); }
+p { font-size: 18px; line-height: 1.6; margin: 10px 0; }
+.center { text-align: center; }
+.mut { color: var(--mut); font-size: 16px; }
+
+.btn {
+  display: inline-block; width: 100%; padding: 16px; margin: 10px 0 0 0;
+  border: none; border-radius: 18px; background: var(--card);
+  border: 2px solid var(--line); color: var(--ink);
+  font-family: 'Fredoka', sans-serif; font-size: 19px; font-weight: 600;
+  cursor: pointer; box-shadow: 0 4px 0 var(--line); transition: all 0.15s ease;
+}
+.btn:hover { background: #fff5e6; transform: translateY(-2px); }
+.btn:active { transform: translateY(2px); box-shadow: none; }
+.btn.main { background: var(--accent); border: none; color: #fff; box-shadow: 0 5px 0 #d6381a; }
+.btn.main:hover { background: var(--accent-hover); }
+.btn.ok { background: var(--ok); border: none; color: #fff; box-shadow: 0 5px 0 #1e8449; }
+.btn.bad { background: var(--bad); border: none; color: #fff; box-shadow: 0 5px 0 #922b21; }
+.btn.yel { background: #f1c40f; border: none; color: #fff; box-shadow: 0 4px 0 #d4ac0d; }
+.btn.hint-btn {
+  background: #f1c40f; color: #fff; border: none; box-shadow: 0 4px 0 #d4ac0d;
+  font-size: 16px; padding: 10px 16px; margin-top: 14px;
+}
+.btn.hint-btn:hover { background: #f39c12; }
+.btn.green { background: var(--ok); box-shadow: 0 4px 0 #1e8449; }
+.btn.green:hover { background: #1e8449; }
+.btn.small { font-size: 15px; padding: 8px 14px; width: auto; margin: 0; }
+
+.panel { background: #fdf8f2; padding: 16px 20px; border-radius: 20px; border: 2px solid var(--line); }
+.panel p { margin: 6px 0; }
+
+.box-hint {
+  background: #fff9e6; border: 2px dashed #f1c40f; border-radius: 18px;
+  padding: 16px 20px; margin-top: 12px; font-size: 16px; animation: fadeIn 0.3s ease-out;
+}
+.box-hint b { color: #d35400; font-family: 'Fredoka', sans-serif; }
+.box-hint p { font-size: 16px; margin: 4px 0; }
+
+.key-box {
+  background: #eafaf1; border: 2px dashed var(--ok); border-radius: 18px;
+  padding: 14px 18px; margin-top: 12px; font-size: 16px; animation: fadeIn 0.3s ease-out;
+}
+.key-box p { font-size: 16px; margin: 4px 0; }
+.key-box b { color: #1e8449; }
+
+.bubble {
+  display: flex; gap: 16px; align-items: center; margin-bottom: 16px;
+  background: #fff3e0; padding: 16px; border-radius: 22px; border: 2px solid #ffe0b2;
+}
+.av { font-size: 50px; line-height: 1; }
+.say { flex: 1; font-size: 17px; font-weight: 700; color: #5d4037; }
+
+.row { display: flex; gap: 10px; }
+.row .btn { margin: 4px 0; }
+.tl { display: flex; gap: 10px; margin-top: 12px; }
+.tl .btn { font-size: 16px; padding: 12px; }
+
+.fb { font-weight: 800; min-height: 28px; margin-top: 12px; font-size: 17px; padding: 10px; border-radius: 12px; }
+.big-icon { font-size: 70px; text-align: center; margin-bottom: 10px; }
+
+.badge {
+  display: inline-block; background: #ffeaa7; color: #d35400;
+  padding: 4px 12px; border-radius: 12px; font-weight: 800; font-size: 14px;
+}
+
+.eq {
+  font-family: 'Fredoka', sans-serif; font-size: 26px; font-weight: 600;
+  text-align: center; background: #fff3e0; border: 2px solid #ffe0b2;
+  border-radius: 20px; padding: 14px; margin: 14px 0; color: #5d4037;
+}
+.eq small { display: block; font-size: 15px; color: var(--mut); font-weight: 600; margin-top: 4px; }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+.col { border-radius: 20px; padding: 16px; border: 2px solid var(--line); background: #fdf8f2; }
+.col h3 { font-family: 'Fredoka', sans-serif; margin: 0 0 8px 0; font-size: 22px; text-align: center; }
+.col.sel h3 { color: #2980b9; } .col.sel { background: #eef6ff; border-color: #bcd9f7; }
+.col.ras h3 { color: var(--accent); } .col.ras { background: #fff1ec; border-color: #ffc9b9; }
+.col p { font-size: 16px; margin: 6px 0; }
+
+.way { margin-bottom: 12px; }
+.way .tag {
+  display: inline-block; background: var(--accent); color: #fff; font-family: 'Fredoka', sans-serif;
+  border-radius: 12px; padding: 2px 12px; font-size: 16px; margin-bottom: 6px;
+}
+.way p { margin: 4px 0; font-size: 17px; }
+
+.qitem {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: #fff8f0; border: 2px solid var(--line); border-radius: 18px;
+  padding: 12px 16px; margin-top: 10px; animation: fadeIn 0.3s ease-out;
+}
+.qitem .qt { font-size: 17px; font-weight: 800; flex: 1; }
+.qitem .ans { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 18px; white-space: nowrap; }
+.qitem .ans.yes { color: var(--ok); } .qitem .ans.no { color: var(--bad); }
+
+.glasses { display: flex; justify-content: center; gap: 24px; margin: 16px 0; flex-wrap: wrap; }
+.gw { text-align: center; font-weight: 800; font-size: 17px; background: #fff8f0; padding: 12px 20px; border-radius: 20px; border: 2px solid var(--line); }
+.glass {
+  width: 80px; min-height: 110px; border: 4px solid #5a3e2b; border-top: none;
+  border-radius: 0 0 22px 22px; display: flex; flex-direction: column-reverse;
+  padding: 4px; gap: 3px; margin: 8px auto; background: rgba(255,255,255,0.7);
+  box-shadow: inset 0 -6px 0 rgba(0,0,0,0.05);
+}
+.glass b { height: 16px; border-radius: 6px; }
+.glass .s { background: var(--jer); } .glass .w { background: var(--wat); }
+
+.lkpd { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.lkpd .kartu { background: #fff8f0; border: 2px solid var(--line); border-radius: 20px; padding: 16px; }
+.lkpd .kartu h3 { font-family: 'Fredoka', sans-serif; color: var(--accent); margin: 0 0 6px 0; font-size: 20px; }
+.lkpd .kartu p { font-size: 16px; margin: 6px 0; }
+
+.ticket { background: #fff8f0; border: 2px solid var(--line); border-radius: 18px; padding: 14px 18px; margin-top: 10px; }
+.ticket p { margin: 0; font-size: 17px; }
+
+.sum { display: flex; gap: 14px; align-items: center; background: #fdf8f2; border: 2px solid var(--line); border-radius: 20px; padding: 14px 18px; margin-top: 10px; }
+.sum .n { font-family: 'Fredoka', sans-serif; font-size: 30px; color: var(--accent); }
+.sum p { margin: 0; font-size: 18px; }
+
+@media (max-width: 560px) {
+  .cols, .lkpd { grid-template-columns: 1fr; }
+  .tl { flex-direction: column; }
+  .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const totalSteps = 13;
+let step = 0;
+
+function renderHeader(title) {
+  return `
+    <div class="top-nav">
+      <span>📐 KONSEP RASIO &bull; ${title}</span>
+      <span>Slide ${step + 1} / ${totalSteps}</span>
+    </div>
+    <div class="bar"><i style="width: ${((step + 1) / totalSteps) * 100}%"></i></div>
+  `;
+}
+
+function glassHTML(s, w) {
+  return '<div class="glass">' + '<b class="s"></b>'.repeat(s) + '<b class="w"></b>'.repeat(w) + '</div>';
+}
+
+function next() { if (step < totalSteps - 1) { step++; render(); } }
+function prev() { if (step > 0) { step--; render(); } }
+
+function toggleEl(id, btn, showTxt, hideTxt) {
+  const el = document.getElementById(id);
+  const hidden = el.style.display === 'none';
+  el.style.display = hidden ? 'block' : 'none';
+  if (btn) btn.textContent = hidden ? hideTxt : showTxt;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') next();
+  if (e.key === 'ArrowLeft') prev();
+});
+
+/* ---------- slide 4: mana yang boleh dibandingkan ---------- */
+const cmpItems = [
+  { t: 'Berat 40 kg dan berat 50 kg', a: 'Boleh', y: true },
+  { t: 'Tinggi 150 cm dan berat 40 kg', a: 'Tidak', y: false },
+  { t: '5 pulpen dan 8 buku', a: 'Boleh', y: true }
+];
+function showCmpItems(btn) {
+  $('#cmpList').style.display = 'block';
+  btn.style.display = 'none';
+}
+function showCmpKey(i, btn) {
+  document.getElementById('cmpAns' + i).style.display = 'inline';
+  btn.style.display = 'none';
+}
+function showAllKeys() {
+  cmpItems.forEach((_, i) => {
+    document.getElementById('cmpAns' + i).style.display = 'inline';
+    const b = document.getElementById('cmpBtn' + i); if (b) b.style.display = 'none';
+  });
+}
+
+/* ---------- slide 7: warung es kiki ---------- */
+let kk = { j: 0, w: 0, porsi: 3, skor: 0, ronde: 0 };
+const kikiPorsi = [4, 2, 5];
+
+function kikiSay(av, html) {
+  $('#kikiAv').textContent = av;
+  $('#kikiSay').innerHTML = html;
+}
+
+function kikiPilih(opt) {
+  const g = $('#gameGlass'), f = $('#gameFb');
+  if (opt === 'a') {
+    g.innerHTML = `<div class="glasses"><div class="gw"><span class="badge">Pilihan A</span>${glassHTML(3, 6)}🍊 3 : 💧 6</div></div>`;
+    f.innerHTML = '<span style="color:var(--ok)">Dikali 3 → 3 : 6 = 1 : 2.</span><br>Selisih berubah (2 − 1 = 1 jadi 6 − 3 = 3), tapi rasanya tetap sama.';
+    kikiSay('😋', '<b>Kiki:</b> Hmm, segar! Rasanya persis seperti es jeruk biasa. Terima kasih!');
+  } else {
+    g.innerHTML = `<div class="glasses"><div class="gw"><span class="badge">Pilihan B</span>${glassHTML(3, 4)}🍊 3 : 💧 4</div></div>`;
+    f.innerHTML = '<span style="color:var(--bad)">Ditambah 2 → 3 : 4, bukan 1 : 2.</span><br>Selisihnya memang tetap 1, tapi rasanya jadi beda.';
+    kikiSay('🤢', '<b>Kiki:</b> Hih, kok rasanya jadi asam? Jerukku kebanyakan! Coba pikir lagi ya.');
+  }
+  $('#kikiLanjut').style.display = 'block';
+}
+
+function kikiMulaiBuat() {
+  kk.j = 0; kk.w = 0;
+  kk.porsi = kikiPorsi[kk.ronde % kikiPorsi.length];
+  kk.ronde++;
+  $('#kikiA').style.display = 'none';
+  $('#kikiB').style.display = 'block';
+  $('#kikiLagi').style.display = 'none';
+  $('#kikiFb').innerHTML = '';
+  $('#kikiRonde').textContent = 'Pesanan ' + (kk.ronde + 1);
+  kikiSay('🐱', `<b>Pesanan baru!</b> Es jeruk <b>1 : 2</b>, minta <b>${kk.porsi} porsi</b> dalam satu wadah. Racik sendiri ya!`);
+  kikiUpd();
+}
+
+function kikiUpd() {
+  $('#kikiWadah').innerHTML = glassHTML(kk.j, kk.w);
+  $('#kikiCnt').textContent = '🍊 ' + kk.j + ' · 💧 ' + kk.w;
+  $('#kikiSkor').textContent = '⭐ ' + kk.skor;
+}
+
+function kikiTambah(t, d) {
+  const v = kk[t] + d;
+  if (v < 0 || (d > 0 && kk.j + kk.w >= 15)) return;
+  kk[t] = v;
+  kikiUpd();
+}
+
+function kikiReset() { kk.j = 0; kk.w = 0; $('#kikiFb').innerHTML = ''; kikiUpd(); }
+
+function kikiCek() {
+  const f = $('#kikiFb');
+  if (kk.j === 0 || kk.w === 0) {
+    f.innerHTML = "<span style='color:var(--bad)'>Isi jeruk dan air dulu ya!</span>";
+    return;
+  }
+  if (kk.w === 2 * kk.j) {
+    kk.skor++;
+    kikiUpd();
+    f.innerHTML = `🎉 <span style="color:var(--ok)">Pelanggan puas!</span> ${kk.j} : ${kk.w} = 1 : 2 (dikali ${kk.j}).`;
+    kikiSay('😋', '<b>Kiki:</b> Enak sekali! Kamu jagoan es jeruk!');
+    $('#kikiLagi').style.display = 'block';
+  } else {
+    f.innerHTML = `😖 <span style="color:var(--bad)">Rasanya beda!</span> Hasilmu ${kk.j} : ${kk.w}. Ingat: rasio dijaga dengan <b>perkalian</b>, bukan penjumlahan. Untuk ${kk.porsi} porsi, kalikan 1 : 2 dengan berapa?`;
+    kikiSay('🤢', '<b>Kiki:</b> Hmm, rasanya kok aneh... coba ulang!');
+  }
+}
+
+/* ---------- slide 10: refleksi ---------- */
+function tl(c) {
+  const t = $('#tlf');
+  if (c === 'g') t.innerHTML = "<span style='color:var(--ok)'>Luar biasa! Kamu sudah siap jadi jagoan matematika! 🌟</span>";
+  if (c === 'y') t.innerHTML = "<span style='color:#d35400'>Tetap semangat! Ingat selalu urutan penulisan dan pembagian FPB-nya ya. 👍</span>";
+  if (c === 'r') t.innerHTML = "<span style='color:var(--bad)'>Jangan berkecil hati! Ibu/Bapak guru siap membimbingmu kembali. 💪</span>";
+}
+
+function render() {
+  const app = $('#app');
+
+  // SLIDE 1: JUDUL
+  if (step === 0) {
+    app.innerHTML = `
+      <div class="card center">
+        <div class="big-icon">📐🍎🍊</div>
+        <h1>Konsep Rasio</h1>
+        <p class="mut"><b>Matematika Kelas VII &bull; Microteaching</b></p>
+        <div style="margin: 20px 0; background: #fff5e6; padding: 14px; border-radius: 18px; border: 2px solid var(--line);">
+          <p style="margin:0; font-size: 16px;"><b>Nama:</b> Naswa Resaptania Zhulvan</p>
+          <p style="margin:0; font-size: 14px; color: var(--mut);">Universitas Sarjanawiyata Tamansiswa</p>
+        </div>
+        <button class="btn main" onclick="next()">Mulai Pembelajaran ➜</button>
+      </div>`;
+  }
+
+  // SLIDE 2: TUJUAN
+  else if (step === 1) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Tujuan Pembelajaran')}
+        <h2>Tujuan Pembelajaran 🎯</h2>
+        <div class="panel">
+          <p>✅ <b>1.</b> Menjelaskan konsep rasio, berbagai bentuk rasio, dan penggunaannya dalam kehidupan sehari-hari.</p>
+          <p>✅ <b>2.</b> Membedakan selisih (perbandingan secara penjumlahan) dan rasio (perbandingan secara perkalian).</p>
+        </div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Apa itu Rasio? ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 3: APA ITU RASIO
+  else if (step === 2) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Pengertian Rasio')}
+        <h2>Apa itu Rasio? 🤔</h2>
+        <div class="box-hint" style="margin-top:0; text-align:center; font-size:20px;">
+          <b>Rasio</b> = perbandingan dua besaran <b>sejenis</b>.
+        </div>
+        <div class="glasses" style="gap:14px;">
+          <div class="gw" style="font-size:36px;">🍎<br><span style="font-size:17px;">Berat apel</span></div>
+          <div class="gw" style="font-size:36px;">🍊<br><span style="font-size:17px;">Berat jeruk</span></div>
+        </div>
+        <div class="glasses" style="gap:14px;">
+          <div class="gw" style="font-size:36px;">🧍‍♀️<br><span style="font-size:17px;">tinggi badan ani</span></div>
+          <div class="gw" style="font-size:36px;">🧍‍♂️<br><span style="font-size:17px;">tinggi badan budi</span></div>
+        </div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Mana yang Boleh Dibandingkan? ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 4: MANA YANG BOLEH DIBANDINGKAN (hidden -> tekan)
+  else if (step === 3) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Cek Pemahaman')}
+        <h2>Mana yang Boleh Dibandingkan? 🧐</h2>
+        <p class="center mut">Pikirkan dulu, lalu pilih: <b>boleh</b> atau <b>tidak</b>?</p>
+
+        <button class="btn hint-btn" style="background:#3498db; box-shadow:0 4px 0 #2471a3;" onclick="showCmpItems(this)">👀 Tampilkan Soal</button>
+
+        <div id="cmpList" style="display:none;">
+          ${cmpItems.map((it, i) => `
+            <div class="qitem">
+              <span class="qt">${i + 1}. ${it.t}</span>
+              <span class="ans ${it.y ? 'yes' : 'no'}" id="cmpAns${i}" style="display:none;">${it.y ? '✅' : '❌'} ${it.a}</span>
+              <button class="btn small hint-btn" id="cmpBtn${i}" style="margin:0;" onclick="showCmpKey(${i}, this)">🔑 Kunci</button>
+            </div>`).join('')}
+          <div class="center" style="margin-top:12px;">
+            <button class="btn small green" style="color:#fff;" onclick="showAllKeys()">🔑 Tampilkan Semua Kunci</button>
+          </div>
+        </div>
+
+        <div class="box-hint center" style="font-size:18px;"><b>Rasio hanya untuk besaran sejenis.</b></div>
+
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Cara Menulis Rasio ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 5: CARA MENULIS RASIO
+  else if (step === 4) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Cara Menulis Rasio')}
+        <h2>Cara Menulis Rasio ✍️</h2>
+        <p class="center">Terdapat <b>dua cara</b> menulis rasio.</p>
+        <p class="center mut">Berat badan Ani <b>40 kg</b> dan berat badan Budi <b>50 kg</b>.</p>
+
+        <div class="panel">
+          <div class="way">
+            <span class="tag">Cara 1</span>
+            <p><b>a : b</b> &rarr; 40 : 50</p>
+            <p>Sederhanakan dengan FPB &rarr; <b>4 : 5</b></p>
+          </div>
+          <div class="way" style="margin-bottom:0;">
+            <span class="tag">Cara 2</span>
+            <p><b>a / b</b> &rarr; 40/50</p>
+            <p>Sederhanakan dengan FPB &rarr; <b>4/5</b></p>
+          </div>
+        </div>
+
+        <div class="box-hint">
+          <b>📦 Contoh lain — tiga besaran ditulis a : b : c</b>
+          <p>tepung : gula : kelapa = 400 : 200 : 100 = <b>4 : 2 : 1</b></p>
+        </div>
+
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Selisih dan Rasio ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 6: SELISIH DAN RASIO
+  else if (step === 5) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Selisih dan Rasio')}
+        <h2>Selisih dan Rasio ⚖️</h2>
+        <div class="cols">
+          <div class="col sel">
+            <h3>➖ Selisih</h3>
+            <p>Perbandingan secara <b>penjumlahan / pengurangan</b></p>
+            <p>Menjawab: <b>berapa bedanya?/berapa selisihnya?</b></p>
+            <p>Contoh: <b>3 − 2 = 1</b></p>
+          </div>
+          <div class="col ras">
+            <h3>✖️ Rasio</h3>
+            <p>Perbandingan secara <b>perkalian / pembagian</b></p>
+            <p>Menjawab: <b>berapa banding berapa?</b></p>
+            <p>Contoh: <b>2 : 3</b></p>
+          </div>
+        </div>
+        <div class="box-hint center" style="font-size:19px;"><b>Selisih tidak sama dengan rasio.</b></div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Ke Warung Es Kiki 🍹 ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 7: WARUNG ES KIKI (GAME PESANAN INTERAKTIF)
+  else if (step === 6) {
+    kk = { j: 0, w: 0, porsi: 3, skor: 0, ronde: 0 };
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Warung Es Kiki')}
+        <h2>🍹 Warung Es Kiki</h2>
+        <div class="bubble">
+          <div class="av" id="kikiAv">🐱</div>
+          <div class="say" id="kikiSay"><b>Pesanan masuk!</b> Es jeruk dengan rasio <b>jeruk : air = 1 : 2</b>. Saya minta <b>3 porsi dalam satu wadah</b>. Bagaimana cara membuatnya?</div>
+        </div>
+
+        <div id="kikiA">
+          <div class="glasses" style="margin:10px 0;">
+            <div class="gw"><span class="badge">1 Porsi</span>${glassHTML(1, 2)}🍊 1 : 💧 2</div>
+          </div>
+          <div class="row">
+            <button class="btn" onclick="kikiPilih('a')">(a) Dikali 3</button>
+            <button class="btn" onclick="kikiPilih('b')">(b) Ditambah 3 pada tiap bahan</button>
+          </div>
+          <div id="gameGlass"></div>
+          <div class="fb center" id="gameFb"></div>
+          <button class="btn main" id="kikiLanjut" style="display:none;" onclick="kikiMulaiBuat()">Coba Racik Sendiri! 🧑‍🍳 ➜</button>
+        </div>
+
+        <div id="kikiB" style="display:none;">
+          <div class="center" style="margin-bottom:6px;">
+            <span class="badge" id="kikiRonde">Pesanan 2</span>
+            <span class="badge" style="background:#d5f5e3;color:#1e8449;" id="kikiSkor">⭐ 0</span>
+          </div>
+          <div class="glasses" style="margin:10px 0;">
+            <div class="gw">
+              <div id="kikiWadah">${glassHTML(0, 0)}</div>
+              <div id="kikiCnt" style="font-size:18px;">🍊 0 · 💧 0</div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn" onclick="kikiTambah('j',1)">➕ 🍊 Jeruk</button>
+            <button class="btn" onclick="kikiTambah('j',-1)">➖ 🍊</button>
+            <button class="btn" onclick="kikiTambah('w',1)">➕ 💧 Air</button>
+            <button class="btn" onclick="kikiTambah('w',-1)">➖ 💧</button>
+          </div>
+          <div class="row">
+            <button class="btn" onclick="kikiReset()">🔄 Ulang</button>
+            <button class="btn main" onclick="kikiCek()">Sajikan ke Pelanggan ✔</button>
+          </div>
+          <div class="fb center" id="kikiFb"></div>
+          <button class="btn ok" id="kikiLagi" style="display:none;" onclick="kikiMulaiBuat()">Pesanan Berikutnya ➜</button>
+        </div>
+
+        <button class="btn hint-btn green" onclick="toggleEl('kunciKiki', this, '🔑 Tampilkan Catatan (Kunci)', '🙈 Sembunyikan Catatan')">🔑 Tampilkan Catatan (Kunci)</button>
+        <div id="kunciKiki" class="key-box" style="display:none;">
+          <p><b>(a)</b> 3 : 6 = 1 : 2, selisih 3, <b>rasa sama</b>.</p>
+          <p><b>(b)</b> 4 : 5, selisih 1 (sama dengan selisih awal), <b>rasa beda</b>.</p>
+        </div>
+
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">LKPD Berpasangan ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 8: LKPD
+  else if (step === 7) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('LKPD Berpasangan')}
+        <h2>LKPD Berpasangan 👫 (3 menit)</h2>
+        <p class="center"><span class="badge">Satu membaca, satu menulis &bull; 3 menit</span></p>
+        <div class="lkpd">
+          <div class="kartu">
+            <h3>Kartu 1 — Data Kelas 🏫</h3>
+            <p>18 laki-laki, 12 perempuan.</p>
+            <p><b>a)</b> Rasio laki-laki : perempuan dalam <b>a : b</b> dan <b>a/b</b>.</p>
+            <p><b>b)</b> Sederhanakan.</p>
+            <p><b>c)</b> Selisihnya sama dengan rasio?</p>
+          </div>
+          <div class="kartu">
+            <h3>Kartu 2 — Resep Apem 🥠</h3>
+            <p>400 g tepung, 200 g gula, 100 g kelapa.</p>
+            <p><b>a)</b> Rasio tepung : gula : kelapa, sederhanakan.</p>
+            <p><b>b)</b> Rasio gula : tepung dalam <b>a : b</b> dan <b>a/b</b>; selisih 200 g sama dengan rasio?</p>
+            <p><b>c)</b> Satu contoh rasio lain.</p>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Pembahasan ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 9: PEMBAHASAN
+  else if (step === 8) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Pembahasan')}
+        <h2>Pembahasan 🔑</h2>
+        <div class="panel" style="margin-bottom:12px;">
+          <p><b>Kartu 1:</b></p>
+          <p>18 : 12 dan 18/12 = <b>3 : 2</b></p>
+          <p>Selisih 6 (pengurangan) <b>≠</b> rasio 3 : 2</p>
+        </div>
+        <div class="panel">
+          <p><b>Kartu 2:</b></p>
+          <p>400 : 200 : 100 = <b>4 : 2 : 1</b></p>
+          <p>gula : tepung = <b>1 : 2</b></p>
+          <p>Selisih 200 g <b>≠</b> rasio</p>
+        </div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Refleksi ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 10: REFLEKSI
+  else if (step === 9) {
+    app.innerHTML = `
+      <div class="card center">
+        ${renderHeader('Refleksi')}
+        <h2>🚦 Seberapa Paham Kamu Hari Ini?</h2>
+        <p>Bagaimana pemahamanmu? Pilih atau tunjukkan kartu lampu lalu lintasmu:</p>
+        <div class="tl">
+          <button class="btn ok" onclick="tl('g')">🟢 Paham Banget</button>
+          <button class="btn yel" onclick="tl('y')">🟡 Agak Ragu</button>
+          <button class="btn bad" onclick="tl('r')">🔴 Masih Bingung</button>
+        </div>
+        <div class="fb center" id="tlf"></div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Exit Ticket ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 11: EXIT TICKET
+  else if (step === 10) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Exit Ticket')}
+        <h2>Exit Ticket 🎫</h2>
+        <div class="ticket"><p>1️⃣ Tinggi Ani 150 cm dan berat 40 kg. Bisakah dibandingkan sebagai rasio? Jelaskan.</p></div>
+        <div class="ticket"><p>2️⃣ Penjual menjual 12 es teh dan 18 es jeruk. Tulis rasio es teh : es jeruk dalam bentuk <b>a : b</b> dan <b>a/b</b>, lalu sederhanakan.</p></div>
+        <div class="ticket"><p>3️⃣ Resep 1 gelas es sirup: 2 sirup : 3 air. Untuk 2 gelas, Tika memakai 4 sirup : 5 air, Beni 4 sirup : 6 air. Siapa yang rasanya sama? Jelaskan dengan kata “penjumlahan” dan “perkalian”.</p></div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Kesimpulan ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 12: KESIMPULAN
+  else if (step === 11) {
+    app.innerHTML = `
+      <div class="card">
+        ${renderHeader('Kesimpulan')}
+        <h2>Kesimpulan 📌</h2>
+        <div class="sum"><span class="n">1</span><p><b>Rasio</b> = perbandingan dua besaran sejenis.</p></div>
+        <div class="sum"><span class="n">2</span><p>cara menuliskannya <b>a : b</b> dan <b>a/b</b>.</p></div>
+        <div class="sum"><span class="n">3</span><p>Selisih <b>≠</b> Rasio.</p></div>
+        <div class="row" style="margin-top: 12px;">
+          <button class="btn" onclick="prev()">⬅ Kembali</button>
+          <button class="btn main" onclick="next()">Penutup ➜</button>
+        </div>
+      </div>`;
+  }
+
+  // SLIDE 13: PENUTUP
+  else if (step === 12) {
+    app.innerHTML = `
+      <div class="card center">
+        <div class="big-icon">🏆🎉</div>
+        <h1>Luar Biasa! Pembelajaran Selesai</h1>
+        <p>Terima kasih atas semangat dan kerja samanya hari ini!</p>
+        <div class="box-hint" style="margin: 20px 0;">
+          <b>Materi Pertemuan Berikutnya:</b><br>Skala
+        </div>
+        <p class="mut">Mari kita tutup dengan doa dan salam.</p>
+        <button class="btn main" onclick="step=0;render();">Mulai Lagi Dari Awal 🔄</button>
+      </div>`;
+  }
+}
+
+render();
+</script>
+</body>
+</html>
